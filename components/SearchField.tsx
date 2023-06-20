@@ -1,9 +1,15 @@
 import Image from "next/image";
 
-export default function SearchField() {
+type InputProps = {
+    value: string
+    handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+export default function SearchField(props: InputProps) {
+
   return (
-    <div className="relative">
-      <input type="search" placeholder="Search for any word..." className="w-full h-12 bg-[#F4F4F4] rounded-2xl px-6 py-4"/>
+    <div className="relative mb-7">
+      <input type="text" placeholder="Search for any word..." name="search" value={props.value} onChange={props.handleChange} className="w-full h-12 bg-[#F4F4F4] rounded-2xl px-6 py-4"/>
       <Image 
         src="/icon-search.svg"
         alt="search icon"
