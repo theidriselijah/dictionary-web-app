@@ -1,4 +1,5 @@
 import { SearcheResultType } from "@/pages"
+import Image from "next/image"
 
 type SearchResultProps = {
   word: string
@@ -19,29 +20,43 @@ type SearchResultProps = {
 }
 
 export default function SearchResult(props: SearchResultProps) {
+
   return (
     <div>
-        <div>
-          {props.word}
-          {props.phonetic}
-          {props.phonetics?.map((item, index) => (
-            <p key={index}>{item.audio}</p>
-          ))}
-          {props.meanings?.map((item, index) => (
-            <div key={index}>
-              <h1>{item?.partOfSpeech}</h1>
-              <p>{item?.definitions?.map((item, index) => (
-                <div key={index}>
-                  <p>{item.definition}</p>
-                  <p>{item.example}</p>
-                </div>
-              ))}</p>
-              <h3>{item?.synonyms}</h3>
-              <h3>{item?.antonyms}</h3>
-            </div>
-          ))}
-          {props?.sourceUrls}
+        <div className="flex justify-between">
+          <div>
+            <h1>{props.word}</h1>
+            <p>{props.phonetic}</p>
+          </div>
+          <Image 
+            src="/icon-play.svg"
+            alt="play"
+            width={48}
+            height={48}
+          />
         </div>
     </div>
   )
 }
+
+
+
+{/* <div>
+  {props.word}
+  {props.phonetic}
+  {americanEnglishPhonetic.audio}
+  {props.meanings?.map((item, index) => (
+    <div key={index}>
+      <h1>{item?.partOfSpeech}</h1>
+      <p>{item?.definitions?.map((item, index) => (
+        <div key={index}>
+          <p>{item.definition}</p>
+          <p>{item.example}</p>
+        </div>
+      ))}</p>
+      <h3>{item?.synonyms}</h3>
+      <h3>{item?.antonyms}</h3>
+    </div>
+  ))}
+  {props?.sourceUrls}
+</div> */}
