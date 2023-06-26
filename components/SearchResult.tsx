@@ -1,4 +1,3 @@
-import { SearcheResultType } from "@/pages"
 import Image from "next/image"
 
 type SearchResultProps = {
@@ -17,6 +16,7 @@ type SearchResultProps = {
     audio: string
   }[]
   sourceUrls: string[]
+  selectedFont: string
 }
 
 export default function SearchResult(props: SearchResultProps) {
@@ -25,8 +25,8 @@ export default function SearchResult(props: SearchResultProps) {
     <div>
         <div className="flex justify-between">
           <div>
-            <h1>{props.word}</h1>
-            <p>{props.phonetic}</p>
+            <h1 className="font-incon font-bold text-[32px]">{props.word}</h1>
+            <p className="font-inter text-[18px] text-[#A445ED]">{props.phonetic}</p>
           </div>
           <Image 
             src="/icon-play.svg"
@@ -34,6 +34,9 @@ export default function SearchResult(props: SearchResultProps) {
             width={48}
             height={48}
           />
+        </div>
+        <div className={`${props.selectedFont}`}>
+          
         </div>
     </div>
   )

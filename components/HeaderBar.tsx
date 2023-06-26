@@ -1,7 +1,11 @@
 import Image from "next/image";
 
+type FontSelectedProps = {
+    value: string
+    selectHandleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
+}
 
-export default function HeaderBar() {
+export default function HeaderBar(props: FontSelectedProps) {
 
   return (
     <div className="flex justify-between mb-6">
@@ -13,10 +17,10 @@ export default function HeaderBar() {
         />
         <div className="flex items-center">
             <div className="flex relative min-w-[120px] h-6">
-                <select name="font" id="font" className="outline-none appearance-none w-full text-xl">
-                    <option value="sans-serif">Sans Serif</option>
-                    <option value="serif">Serif</option>
-                    <option value="mono">Mono</option>
+                <select name="font" id="font" value={props.value} onChange={props.selectHandleChange} className="outline-none appearance-none w-full text-xl">
+                    <option value="font-inter">Sans Serif</option>
+                    <option value="font-lora">Serif</option>
+                    <option value="font-incon">Mono</option>
                 </select>
                 <div className="absolute right-0 top-2.5">
                     <Image 

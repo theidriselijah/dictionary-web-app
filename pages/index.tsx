@@ -1,9 +1,9 @@
-import HeaderBar from "@/components/HeaderBar";
-import SearchField from "@/components/SearchField";
-import SearchResult from "@/components/SearchResult";
-import { ChangeEvent, useEffect, useState } from "react";
+import HeaderBar from '@/components/HeaderBar'
+import SearchField from '@/components/SearchField'
+import SearchResult from '@/components/SearchResult'
+import { ChangeEvent, useEffect, useState } from 'react'
 
-export interface SearcheResultType {
+interface SearcheResultType {
   word: string
   phonetic: string
   meanings: {
@@ -23,56 +23,74 @@ export interface SearcheResultType {
 
 export default function DictionaryWebApp() {
   const [wordSearched, setWordSearched] = useState('')
+  const [isWordBeingSearched, setIsWordBeingSearched] = useState(false)
+  const [selectedFont, setSelectedFont] = useState('sans-serif')
   const [searchResult, setSearchResult] = useState<SearcheResultType>({
-    word: "",
-    phonetic: "",
+    word: '',
+    phonetic: '',
     meanings: [
       {
-        partOfSpeech: "",
+        partOfSpeech: '',
         definitions: [],
-        synonyms: [""],
-        antonyms: [""],
-      }
+        synonyms: [''],
+        antonyms: [''],
+      },
     ],
     phonetics: [
       {
-        audio: ""
-      }
+        audio: '',
+      },
     ],
     sourceUrls: [],
   })
 
   console.log(searchResult)
 
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
-      const { value } = event.target
+  function inputHandleChange(event: ChangeEvent<HTMLInputElement>) {
+    const { value } = event.target
+    if (value != '') {
+      setWordSearched(value)
+      setIsWordBeingSearched(true)
+    } else {
+      setIsWordBeingSearched(false)
+      setWordSearched('')
+    }
+    
+  }
 
-    setWordSearched(value)
+  function selectHandleChange(event: ChangeEvent<HTMLSelectElement>) {
+    const { value } = event.target
+
+    setSelectedFont(value)
   }
 
   useEffect(() => {
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${wordSearched}`)
-      .then(res => res.json())
-      .then(data => setSearchResult(data[0]))
-      .catch(err => {
+      .then((res) => res.json())
+      .then((data) => setSearchResult(data[0]))
+      .catch((err) => {
         console.log(err.message)
       })
   }, [wordSearched])
-  
+
   return (
     <main className="m-6">
-      <HeaderBar />
+      <HeaderBar
+        value={selectedFont}
+        selectHandleChange={(event) => selectHandleChange(event)}
+      />
       <SearchField
         value={wordSearched}
-        handleChange={event => handleChange(event)}
+        inputHandleChange={(event) => inputHandleChange(event)}
       />
-      <SearchResult
+      {isWordBeingSearched && <SearchResult
         word={searchResult?.word}
         phonetic={searchResult?.phonetic}
         meanings={searchResult?.meanings}
         phonetics={searchResult?.phonetics}
         sourceUrls={searchResult?.sourceUrls}
-      />
+        selectedFont={selectedFont}
+      />}
     </main>
   )
 }
