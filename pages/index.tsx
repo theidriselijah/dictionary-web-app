@@ -1,7 +1,9 @@
 import HeaderBar from '@/components/HeaderBar'
 import SearchField from '@/components/SearchField'
 import SearchResult from '@/components/SearchResult'
+import NoDefFound from '@/components/NoDefFound'
 import { ChangeEvent, useEffect, useState } from 'react'
+import { useTheme } from 'next-themes'
 
 interface SearcheResultType {
   word: string
@@ -25,7 +27,9 @@ export default function DictionaryWebApp() {
   const [wordSearched, setWordSearched] = useState('')
   const [isWordBeingSearched, setIsWordBeingSearched] = useState(false)
   const [selectedFont, setSelectedFont] = useState('sans-serif')
-  const [searchResult, setSearchResult] = useState<SearcheResultType>({
+  const [checked, setChecked] = useState(false)
+  const { theme, setTheme } = useTheme()
+  const [searchResult, setSearchResult] = useState<SearcheResultType | undefined>({
     word: '',
     phonetic: '',
     meanings: [
@@ -44,6 +48,8 @@ export default function DictionaryWebApp() {
     sourceUrls: [],
   })
 
+  console.log(searchResult)
+
   function inputHandleChange(event: ChangeEvent<HTMLInputElement>) {
     const { value } = event.target
     if (value != '') {
@@ -55,10 +61,21 @@ export default function DictionaryWebApp() {
     }
   }
 
+  console.log(isWordBeingSearched)
+
   function selectHandleChange(event: ChangeEvent<HTMLSelectElement>) {
     const { value } = event.target
 
     setSelectedFont(value)
+  }
+
+  function isCheckedHandleChange(event: ChangeEvent<HTMLInputElement>) {
+    setChecked(!checked)
+    if (checked === true) {
+      setTheme("light")
+    } else if (checked === false) {
+      setTheme("dark")
+    }
   }
 
   useEffect(() => {
@@ -74,20 +91,27 @@ export default function DictionaryWebApp() {
     <main className="m-6">
       <HeaderBar
         value={selectedFont}
+        checked={checked}
         selectHandleChange={(event) => selectHandleChange(event)}
+        isCheckedHandleChange={(event) => isCheckedHandleChange(event)}
       />
       <SearchField
         value={wordSearched}
         inputHandleChange={(event) => inputHandleChange(event)}
       />
-      {isWordBeingSearched && <SearchResult
+      {isWordBeingSearched && searchResult != undefined ? <SearchResult
         word={searchResult?.word}
         phonetic={searchResult?.phonetic}
         meanings={searchResult?.meanings}
         phonetics={searchResult?.phonetics}
         sourceUrls={searchResult?.sourceUrls}
         selectedFont={selectedFont}
-      />}
+      /> : searchResult === undefined ? (
+        <NoDefFound 
+          title="No Definitions Found"
+          message="Sorry pal, we couldn't find definitions for the word you were looking for."
+        />
+      ) : (<div></div>)}
     </main>
   )
 }

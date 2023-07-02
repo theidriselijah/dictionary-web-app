@@ -1,6 +1,7 @@
 import '@/styles/globals.css'
 import { Inter, Lora, Inconsolata  } from 'next/font/google'
 import type { AppProps } from 'next/app'
+import { ThemeProvider } from 'next-themes'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -22,8 +23,10 @@ const incon = Inconsolata({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={`${inter.variable}, ${lora.variable}, ${incon.variable}`}>
-      <Component {...pageProps} />
-    </main>
+    <ThemeProvider attribute='class' enableSystem={false}>
+      <main className={`${inter.variable}, ${lora.variable}, ${incon.variable}`}>
+        <Component {...pageProps} />
+      </main>
+    </ThemeProvider>
   )
 }

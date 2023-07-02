@@ -9,7 +9,7 @@ export default function SearchField(props: InputProps) {
 
   return (
     <div className="relative mb-7">
-      <input type="text" placeholder="Search for any word..." name="search" value={props.value} onChange={props.inputHandleChange} className="w-full h-12 bg-[#F4F4F4] rounded-2xl px-6 py-4"/>
+      <input type="text" placeholder="Search for any word..." name="search" value={props.value} onChange={props.inputHandleChange} className="w-full h-12 bg-[#F4F4F4] rounded-2xl px-6 py-4 dark:bg-[#1F1F1F]"/>
       <Image 
         src="/icon-search.svg"
         alt="search icon"

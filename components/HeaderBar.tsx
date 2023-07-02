@@ -1,8 +1,10 @@
-import Image from "next/image";
+import Image from "next/image"
 
 type FontSelectedProps = {
     value: string
+    checked: boolean
     selectHandleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
+    isCheckedHandleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export default function HeaderBar(props: FontSelectedProps) {
@@ -17,7 +19,7 @@ export default function HeaderBar(props: FontSelectedProps) {
         />
         <div className="flex items-center">
             <div className="flex relative min-w-[120px] h-6">
-                <select name="font" id="font" value={props.value} onChange={props.selectHandleChange} className="outline-none appearance-none w-full text-xl">
+                <select name="font" id="font" value={props.value} onChange={props.selectHandleChange} className="outline-none appearance-none w-full text-xl dark:bg-[#121212]">
                     <option value="font-inter">Sans Serif</option>
                     <option value="font-lora">Serif</option>
                     <option value="font-incon">Mono</option>
@@ -34,7 +36,7 @@ export default function HeaderBar(props: FontSelectedProps) {
             <div className="mx-4 w-px h-8 bg-[#E9E9E9]"></div>
             <div className="flex">
                 <div className="flex">
-                    <input type="checkbox" id="check" className="hidden"/>
+                    <input type="checkbox" id="check" checked={props.checked} onChange={props.isCheckedHandleChange} className="hidden"/>
                     <label htmlFor="check" className="bg-[#757575] w-10 h-5 rounded-full cursor-pointer relative duration-200 before:absolute before:content-[''] before:bg-[#FFFFFF] before:w-3.5 before:h-3.5 before:rounded-full before:m-[3px] before:duration-200 toggle"></label>
                 </div>
                 <Image 
