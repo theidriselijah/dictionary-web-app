@@ -19,7 +19,7 @@ export default function HeaderBar(props: FontSelectedProps) {
         />
         <div className="flex items-center">
             <div className="flex relative min-w-[120px] h-6">
-                <select name="font" id="font" value={props.value} onChange={props.selectHandleChange} className="outline-none appearance-none w-full text-xl">
+                <select name="font" id="font" value={props.value} onChange={props.selectHandleChange} className="outline-none appearance-none w-full text-xl dark:bg-[#000000]">
                     <option value="font-inter">Sans Serif</option>
                     <option value="font-lora">Serif</option>
                     <option value="font-incon">Mono</option>
