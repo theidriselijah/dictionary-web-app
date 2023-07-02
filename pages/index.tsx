@@ -48,8 +48,6 @@ export default function DictionaryWebApp() {
     sourceUrls: [],
   })
 
-  console.log(searchResult)
-
   function inputHandleChange(event: ChangeEvent<HTMLInputElement>) {
     const { value } = event.target
     if (value != '') {
@@ -60,8 +58,6 @@ export default function DictionaryWebApp() {
       setWordSearched('')
     }
   }
-
-  console.log(isWordBeingSearched)
 
   function selectHandleChange(event: ChangeEvent<HTMLSelectElement>) {
     const { value } = event.target
