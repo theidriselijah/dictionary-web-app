@@ -88,7 +88,7 @@ export default function DictionaryWebApp() {
   }, [wordSearched])
 
   return (
-    <main className="m-6">
+    <main className="m-6 md:m-10 xl:mx-auto max-w-xl">
       <HeaderBar
         value={selectedFont}
         checked={checked}
