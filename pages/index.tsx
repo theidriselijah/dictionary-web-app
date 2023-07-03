@@ -84,7 +84,7 @@ export default function DictionaryWebApp() {
   }, [wordSearched])
 
   return (
-    <main className="m-6 md:m-10 md:mx-auto xl:mx-auto max-w-xl">
+    <div className="m-6 md:m-10 md:mx-auto xl:mx-auto max-w-xl">
       <HeaderBar
         value={selectedFont}
         checked={checked}
@@ -108,6 +108,6 @@ export default function DictionaryWebApp() {
           message="Sorry pal, we couldn't find definitions for the word you were looking for."
         />
       ) : (<div></div>)}
-    </main>
+    </div>
   )
 }
