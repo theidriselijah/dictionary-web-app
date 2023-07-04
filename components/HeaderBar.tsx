@@ -16,7 +16,6 @@ export default function HeaderBar(props: FontSelectedProps) {
             alt="logo"
             width={32}
             height={32}
-            loading="lazy"
         />
         <div className="flex items-center">
             <div className="flex relative min-w-[120px] h-6">
@@ -31,7 +30,6 @@ export default function HeaderBar(props: FontSelectedProps) {
                         alt="down arrow"
                         width={12}
                         height={6}
-                        loading="lazy"
                     />
                 </div>
             </div>
@@ -47,7 +45,6 @@ export default function HeaderBar(props: FontSelectedProps) {
                         width={20}
                         height={20}
                         className="ml-3"
-                        loading="lazy"
                     />
             </div>
         </div>

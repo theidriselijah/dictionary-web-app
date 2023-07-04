@@ -16,7 +16,6 @@ export default function SearchField(props: InputProps) {
         width={16}
         height={16}
         className="absolute top-4 right-6"
-        loading="lazy"
       />
     </div>
   )
