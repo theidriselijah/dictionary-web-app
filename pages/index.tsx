@@ -4,6 +4,7 @@ import SearchResult from '@/components/SearchResult'
 import NoDefFound from '@/components/NoDefFound'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
+import Head from 'next/head'
 
 interface SearcheResultType {
   word: string
@@ -85,6 +86,9 @@ export default function DictionaryWebApp() {
 
   return (
     <div className="m-6 md:m-10 md:mx-auto xl:mx-auto max-w-xl">
+      <Head>
+        <title>Dictionary Web App</title>
+      </Head>
       <HeaderBar
         value={selectedFont}
         checked={checked}
