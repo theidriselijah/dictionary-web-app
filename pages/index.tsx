@@ -29,7 +29,7 @@ export default function DictionaryWebApp() {
   const [isWordBeingSearched, setIsWordBeingSearched] = useState(false)
   const [selectedFont, setSelectedFont] = useState('sans-serif')
   const [checked, setChecked] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const { setTheme } = useTheme()
   const [searchResult, setSearchResult] = useState<SearcheResultType | undefined>({
     word: '',
     phonetic: '',
